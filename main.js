@@ -32,12 +32,12 @@ class Wagon {
     }
 
     join(traveler) {
-        if (this.getAvailableSeatCount() > 1) {
+        if (this.getAvailableSeatCount() >= 1) {
             this.passengers.push(traveler)
         }
     }
     shouldQuarantine() {
-        for (i = 0; i < this.passengers.length; i++) {
+        for (let i = 0; i < this.passengers.length; i++) {
             var passenger = this.passengers[i]
             if (passenger.isHealthy === false) {
                 return true
@@ -47,8 +47,47 @@ class Wagon {
 
     totalFood() {
         var total = 0
-        for (i = 0; i < this.passengers.length; i++) {
-            return total++
+        for (let i = 0; i < this.passengers.length; i++) { 
+            const passenger = this.passengers[i]
+            total = passenger.food 
+        } return total
+    } 
+}
+
+// from here on is Oregon-Trail-Extended 
+
+class Doctor extends Traveler{
+    constructor(name, ){
+       super(name,)
+    }
+    heal(traveler) {  
+    if (this.isHealthy = false) {
+         this.isHealthy = true
         }
+    }
+}
+
+class Hunter extends Traveler {
+    constructor(name,){
+        super(name,)
+        this.food = 2
+    }
+    hunt(){
+     this.food += 5
+    }
+
+    eat(){
+       this.food - 2
+       if(this.food <= 2){
+        this.isHealthy = false
+        }
+    }
+
+    giveFood(traveler, numOfFoodUnits) {
+        if (this.food <= 0){
+            return "traveler has no food to transfer"
+        }else {
+           traveler = this.food.push(numOfFoodUnits) 
+         }
     }
 }
